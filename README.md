@@ -7,9 +7,6 @@
   <a href="#requisitos">Requisitos</a> •
   <a href="#instalação">Instalação</a> •
   <a href="#como-usar">Como Usar</a> •
-  <a href="#estrutura-do-código">Estrutura do Código</a> •
-  <a href="#contribuindo">Contribuindo</a> •
-  <a href="#licença">Licença</a>
 </p>
 
 ---
