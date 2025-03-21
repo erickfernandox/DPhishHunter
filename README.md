@@ -17,7 +17,6 @@ O **DPhishHunter** é uma ferramenta poderosa para gerar e verificar domínios p
 
 - **Geração de Combinações de Domínios**:
   - Gera combinações de domínios com pontos (`.`) e hífens (`-`).
-  - Exemplo: `cnu.inscricoesconcurso.com`, `inscricoes.concursocnu.org`.
 
 - **Validação de Domínios**:
   - Verifica se os domínios são válidos com base em padrões comuns.
@@ -103,7 +102,7 @@ python DPhishHunter.py -p govbr,pagamento,concurso,2025
 Aumentando o número de threads para 20:
 
    ```
-python DPhishHunter.py -p cnu,inscricoes,concurso,2025 -t 20
+python DPhishHunter.py -p govbr,inscricoes,concurso,2025 -t 20
    ```
 
 ## Saída
