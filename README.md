@@ -67,7 +67,7 @@ Siga os passos abaixo para configurar o **DPhishHunter**:
 Se o arquivo requirements.txt não existir, instale as bibliotecas manualmente:
    ```bash
     pip install colorama requests beautifulsoup4 python-whois dnspython
-    ```
+   ```
 
 ## Como Usar
 
