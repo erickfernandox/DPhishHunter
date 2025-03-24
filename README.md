@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ### Como Usar
 Para rodar o script, utilize o seguinte comando:
 ```bash
-python phishhunter.py -p cnu,concurso,govbr,inscricao,inscricoes,2025,cadastro
+python phishhunter.py -p inscricoes,concurso,2025,cadastro
 ```
 Ou utilizando um arquivo de lista de palavras:
 ```bash
@@ -36,12 +36,7 @@ python phishhunter.py -l wordlist.txt
 
 ### Exemplo de Saída
 ```bash
-[REGISTRED/OFFLINE] inscricoescnu2025.com
-      [Subdominio Found] cnu.inscricoescnu2025.com - Title: "Página Oficial"
+[REGISTRED/OFFLINE] inscricoesconcurso2025.com
+      [Subdominio Found] cadastro.inscricoesconcurso2025.com - Title: "Página Oficial"
 ```
 
-### Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
-
-### Licença
-Este projeto está sob a licença MIT.
