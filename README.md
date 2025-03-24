@@ -1,6 +1,6 @@
 # DPhishHunter
 
-### Ferramenta de geração combinatória e análise de domínios potencialmente suspeitos para a prevenção de ataques de phishing.
+### Ferramenta de geração combinatória de domínios potencialmente suspeitos para a prevenção de ataques de phishing.
 
 ### Funcionalidades
 - Geração automática de domínios suspeitos usando combinações de palavras.
