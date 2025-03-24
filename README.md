@@ -1,6 +1,6 @@
 # DPhishHunter
 
-### Ferramenta de Geração e Verificação de Domínios para Detecção de Phishing
+### Ferramenta de Geração Combinatoria e Verificação de Possiveis Domínios para Detecção Preventiva de Phishing
 
 ### Funcionalidades
 - Geração automática de domínios suspeitos usando combinações de palavras.
