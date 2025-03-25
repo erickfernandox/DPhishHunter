@@ -3,9 +3,11 @@ import argparse
 import concurrent.futures
 import socket
 from colorama import Fore, Style, init
+import re
 import requests
 from bs4 import BeautifulSoup
 import whois
+import dns.resolver
 from datetime import datetime, timedelta
 import logging
 
@@ -15,14 +17,12 @@ init(autoreset=True)
 def generate_combinations(words):
     combinations = []
     special_chars = ["-"]
-    
     for i in range(2, len(words) + 1):
         for combo in itertools.permutations(words, i):
             base_combo = "".join(combo)
             combinations.append(base_combo)
             for char in special_chars:
                 combinations.append(char.join(combo))
-    
     return combinations
 
 def get_registration_date(domain):
@@ -49,41 +49,78 @@ def get_page_title(domain):
     try:
         response = requests.get(f"http://{domain}", timeout=5)
         soup = BeautifulSoup(response.text, 'html.parser')
-        return soup.title.string.strip() if soup.title else "No Title"
+        title = soup.title.string if soup.title else "No Title"
+        return title.strip()
     except Exception:
         return "No Title"
 
-def check_domain(domain, checked_domains, subdomain_words):
-    if domain in checked_domains:
-        return False
-    checked_domains.add(domain)
+def get_dns_info(domain):
+    try:
+        answers = dns.resolver.resolve(domain, 'A')
+        ip_address = answers[0].to_text()
+        return ip_address
+    except Exception:
+        return "Unknown"
 
-    registration_date = get_registration_date(domain)
-    if not registration_date:
-        return False
+def get_hosting_provider(domain):
+    try:
+        answers = dns.resolver.resolve(domain, 'NS')
+        ns_record = answers[0].to_text()
+        return ns_record
+    except Exception:
+        return "Unknown"
 
-    now = datetime.now()
-    time_since_registration = now - registration_date
-    days_since_registration = time_since_registration.days
-    formatted_time = f"({days_since_registration} days ago)"
-    three_months_ago = now - timedelta(days=90)
-    date_str = registration_date.strftime('%Y-%m-%d') if registration_date else "Unknown"
-    date_color = Fore.RED if registration_date and registration_date > three_months_ago else ""
+def is_subdomain_valid(subdomain):
+    try:
+        answers = dns.resolver.resolve(subdomain, 'A')
+        if answers:
+            response = requests.get(f"http://{subdomain}", timeout=5)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                title = soup.title.string if soup.title else "No Title"
+                hosting_provider = get_hosting_provider(subdomain)
+                print(f"  [Subdomínio Encontrado] {subdomain} - Title: \"{title}\" - Hosting: {hosting_provider}")
+                return True
+    except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.LifetimeTimeout, requests.RequestException):
+        pass
+    return False
 
-    if is_online(domain):
-        title = get_page_title(domain)
-        print(f"{Fore.GREEN}[REGISTRED/ONLINE] {domain} - {date_color}{date_str} {formatted_time}{Style.RESET_ALL} - Title: {title}")
-        check_subdomains(domain, subdomain_words)
-    else:
-        print(f"{Fore.YELLOW}[REGISTRED/OFFLINE] {domain} - {date_color}{date_str} {formatted_time}{Style.RESET_ALL}")
-    return True
-
-def check_subdomains(domain, subdomain_words):
-    for word in subdomain_words:
+def check_subdomains(domain, keywords):
+    for word in keywords:
         subdomain = f"{word}.{domain}"
-        if is_online(subdomain):
-            title = get_page_title(subdomain)
-            print(f"      {Fore.CYAN}[Subdominio Found] {subdomain} - Title: \"{title}\"{Style.RESET_ALL}")
+        if is_subdomain_valid(subdomain):
+            print(Fore.CYAN + f"  [Subdomínio Encontrado] {subdomain}" + Style.RESET_ALL)
+
+def check_domain(domain, checked_domains, words):
+    try:
+        if domain in checked_domains:
+            return False
+        checked_domains.add(domain)
+
+        registration_date = get_registration_date(domain)
+        if not registration_date:
+            return False
+        
+        now = datetime.now()
+        time_since_registration = now - registration_date
+        days_since_registration = time_since_registration.days
+        formatted_time = f"({days_since_registration} days ago)"
+        
+        three_months_ago = now - timedelta(days=90)
+        date_str = registration_date.strftime('%Y-%m-%d') if registration_date else "Unknown"
+        date_color = Fore.RED if registration_date and registration_date > three_months_ago else ""
+
+        if is_online(domain):
+            title = get_page_title(domain)
+            dns_info = get_dns_info(domain)
+            hosting_provider = get_hosting_provider(domain)
+            print(f"{Fore.GREEN}[REGISTRED/ONLINE] {domain} - {date_color}{date_str} {formatted_time}{Style.RESET_ALL} - Title: {title} - DNS: {dns_info} - Hosting: {hosting_provider}")
+            check_subdomains(domain, words)
+        else:
+            print(f"{Fore.YELLOW}[REGISTRED/OFFLINE] {domain} - {date_color}{date_str} {formatted_time}{Style.RESET_ALL}")
+        return True
+    except Exception:
+        return False
 
 def main():
     parser = argparse.ArgumentParser(description="Generate and check possible fraudulent domains.")
