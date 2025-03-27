@@ -34,7 +34,7 @@ Ou utilizando um arquivo de lista de palavras:
 python phishhunter.py -l wordlist.txt
 ```
 
-<img src=https://i.ibb.co/JwtkwwF9/Captura-de-tela-de-2025-03-24-20-32-49.png>
+
 
 ### Exemplo de Saída
 ```bash
@@ -42,3 +42,4 @@ python phishhunter.py -l wordlist.txt
       [Subdominio Found] cadastro.inscricoesconcurso2025.com - Title: "Página Oficial"
 ```
 
+<img src="https://i.ibb.co/JwtkwwF9/Captura-de-tela-de-2025-03-24-20-32-49.png">
