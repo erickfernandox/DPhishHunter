@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ### Como Usar
 Para rodar o script, utilize o seguinte comando:
 ```bash
-python3 dphishhunter.py -p inscricoes,concurso,2025,cadastro
+python3 dphishhunter.py -p inscricoes,concurso,2025,cadastro,govbr
 ```
 Ou utilizando um arquivo de lista de palavras:
 ```bash
