@@ -19,7 +19,7 @@ Para utilizar o **DPhishHunter**, você precisa ter instalado:
 
 ### Instalação
 ```bash
-git clone https://github.com/seu-usuario/DPhishHunter.git
+git clone https://github.com/erickfernandox/DPhishHunter
 cd DPhishHunter
 pip install -r requirements.txt
 ```
