@@ -3,16 +3,11 @@
 ### Ferramenta criada para a geração automatizada de combinações entre palavras-chave estratégicas, com o objetivo de identificar domínios potencialmente maliciosos ou suspeitos antes que sejam utilizados em campanhas de phishing.
 
 ### Funcionalidades
-- Geração automatizada de domínios com base em combinações de palavras-chave relevantes
- Criação de possíveis variações de domínios que imitariam marcas, serviços ou termos populares para fins de monitoramento preventivo de phishing.
-- Consulta WHOIS para identificação de domínios recentemente registrados
- Verificação do status de registro, data de criação e outras informações relevantes para priorizar domínios recém-criados e potencialmente maliciosos.
-- Detecção de atividade online e serviços hospedados
- Validação da presença de serviços ativos (HTTP/HTTPS) nos domínios gerados
-- Varredura automatizada de subdomínios relevantes
- Descoberta e verificação de subdomínios associados que possam estar sendo utilizados.
-- Extração de título da página e informações de hospedagem
- Coleta de metadados como o título HTML e informações de infraestrutura (IP, ASN, provedor), auxiliando na classificação e análise de risco.
+- Geração automatizada de domínios com base em combinações de palavras-chave relevantes: Criação de possíveis variações de domínios que imitariam marcas, serviços ou termos populares para fins de monitoramento preventivo de phishing
+- Consulta WHOIS para identificação de domínios recentemente registrados: Verificação do status de registro, data de criação e outras informações relevantes para priorizar domínios recém-criados e potencialmente maliciosos.
+- Detecção de atividade online e serviços hospedados: Validação da presença de serviços ativos (HTTP/HTTPS) nos domínios gerados
+- Varredura automatizada de subdomínios relevantes: Descoberta e verificação de subdomínios associados que possam estar sendo utilizados.
+- Extração de título da página e informações de hospedagem: Coleta de metadados como o título HTML e informações de infraestrutura (IP, ASN, provedor), auxiliando na classificação e análise de risco.
 
 ### Requisitos
 Para utilizar o **DPhishHunter**, você precisa ter instalado:
