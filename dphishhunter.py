@@ -139,7 +139,7 @@ def main():
         return
     
     combinations = generate_combinations(words)
-    tlds = [".com", ".net", ".org", ".com.br", ".online", ".shop", ".info", ".biz", ".top", ".site", ".xyz"]
+    tlds = [".com", ".net", ".org", ".com.br", ".online", ".shop", ".info", ".biz", ".top", ".site", ".xyz", ".at"]
     
     print(f"[+] Checking {len(combinations) * len(tlds)} possible domains using {args.threads} threads...\n")
     
