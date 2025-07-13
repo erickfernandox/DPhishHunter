@@ -4,3 +4,4 @@ colorama
 dnspython
 requests
 python-whois
+dns.resolver
