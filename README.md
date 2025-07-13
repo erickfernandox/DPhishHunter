@@ -19,7 +19,7 @@ Para utilizar o **DPhishHunter**, você precisa ter instalado:
 - Python 3.x
 - Pacotes necessários:
   ```bash
-  pip install requests beautifulsoup4 whois dnspython colorama python-whois argparse
+  pip install requests beautifulsoup4 whois dnspython colorama python-whois argparse dns.resolver
   ```
 
 ### Instalação
